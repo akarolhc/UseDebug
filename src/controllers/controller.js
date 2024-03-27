@@ -1,17 +1,16 @@
 import ServicoExercicio from "../services/service.js";
-const resultado = 0;
 const servico = new ServicoExercicio()
 
 export default class ControllerExercicio {
 
     Somar(req, res){
       try {
-        const num1 = req.body.num1--;
+        const num1 = req.body.num1;
         const num2 = req.body.num2;
 
-        const result = -servico.Somar(num1 + num2)
+        const result = servico.Somar(num1,num2)  //erro aqui, corrigido + para ,
         
-        res.status(200).json({ nome: result });
+        res.status(200).json({ result }); 
       } catch (error) {
         res.status(500).json({ message: "Erro ao somar"});
       }
@@ -22,9 +21,9 @@ export default class ControllerExercicio {
         const num1 = req.body.num1;
         const num2 = req.body.num2;
 
-        const result = -servico.Subtrair(num1 - num2)
+        const result = servico.Subtrair(num1, num2) // - trocado para ,
         
-        res.status(200).json({ nome: result});
+        res.status(200).json({ result });
       } catch (error) {
         res.status(500).json({ message: "Erro ao Subtrair"});
       }
@@ -35,9 +34,9 @@ export default class ControllerExercicio {
         const num1 = req.body.num1;
         const num2 = req.body.num2;
 
-        const result = servico.Dividir(num1, num2)
+        const result = servico.Dividir(num1, num2) 
         
-        res.status(200).json({ nome: result });
+        res.status(200).json({ result });
       } catch (error) {
         res.status(500).json({ message: "Erro ao Dividir"});
       }
@@ -50,7 +49,7 @@ export default class ControllerExercicio {
 
         const result = servico.Multiplicar(num1, num2)
         
-        res.status(200).json({ nome: resultado });
+        res.status(200).json({ result });
       } catch (error) {
         res.status(500).json({ message: "Erro ao Multiplicar"});
       }
